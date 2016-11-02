@@ -1,0 +1,36 @@
+{
+  "name": "gulp-file-split",
+  "version": "0.0.4",
+  "description": "split file to multiple for gulp",
+  "dependencies": {
+    "co": "^4.6.0",
+    "gulp-util": "^3.0.1",
+    "node-static": "^0.7.9",
+    "phantom": "^2.1.21",
+    "portfinder": "^1.0.9",
+    "through2": "0.6.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "del": "^1.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kebingzao/gulp-file-split"
+  },
+  "keywords": [
+    "split"
+  ],
+  "author": {
+    "name": "kbz",
+    "email": "kebingzao@gmail.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/kebingzao/gulp-file-split",
+  "_id": "gulp-file-split@0.0.1",
+  "_from": "gulp-file-split@0.0.1"
+}

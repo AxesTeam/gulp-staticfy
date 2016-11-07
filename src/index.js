@@ -12,6 +12,7 @@ module.exports = function(options) {
     // close all http server
     var doAllFinish = () => {
         SimpleServer.closeAll();
+        console.log(gutil.colors.green("staticfy success"));
     };
     var doFinish = () => {
         finishFileSize += 1;
@@ -31,8 +32,8 @@ module.exports = function(options) {
 
       if (file.isBuffer()) {
           totalFileSize += 1;
-          var wwwDir = path.dirname(file.path);
-          var baseName = path.basename(file.path);
+          var wwwDir = file.cwd;
+          var baseName = path.relative(file.cwd, file.path);
           var url = 'http://localhost:{{port}}/';
           SimpleServer.start(wwwDir, server => {
               // Replace {{port}} with server.port
@@ -45,7 +46,7 @@ module.exports = function(options) {
                   _page = page;
                   return _page.open(url);
               }).then(status => {
-                  console.log(status);
+                  //console.log(status);
                   return _page.property('content')
               }).then(content => {
                   file.contents = new Buffer(content);

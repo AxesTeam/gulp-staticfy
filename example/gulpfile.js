@@ -4,7 +4,7 @@ var del    = require('del');
 var _ = require('lodash');
 var seq = require("gulp-sequence");
 // ∂‡”Ô—‘¡–±Ì
-var langArr = ['zh-cn', 'ja', 'en'];
+var langArr = ['', 'zh-cn', 'ja', 'en'];
 var langTaskListMap = {};
 var fileArr = [
     "src/simple.html",

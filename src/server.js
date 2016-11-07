@@ -1,6 +1,7 @@
 var http = require('http');
 var nodeStatic = require('node-static');
 var portfinder = require('portfinder');
+var _ = require("lodash");
 var fileServerList = [];
 function startServer(wwwDir, callback) {
   if(fileServerList[wwwDir]){
@@ -21,11 +22,10 @@ function startServer(wwwDir, callback) {
 }
 
 function closeServer(){
-  console.log("close server");
-  //process.exit(0);
-  fileServerList.forEach(function(item){
+  console.log("close http server");
+  _.each(_.values(fileServerList), function(item){
     item.close();
-  })
+  });
 }
 
 module.exports = {

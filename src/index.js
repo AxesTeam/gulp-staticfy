@@ -7,7 +7,19 @@ var SimpleServer = require('./server.js');
 var map = require('map-stream');
 
 module.exports = function(options) {
-  return map(function (file, callback) {
+    var totalFileSize = 0;
+    var finishFileSize = 0;
+    // close all http server
+    var doAllFinish = () => {
+        SimpleServer.closeAll();
+    };
+    var doFinish = () => {
+        finishFileSize += 1;
+        if(finishFileSize === totalFileSize){
+            doAllFinish();
+        }
+    };
+    return map(function (file, callback) {
       if (file.isNull()) {
           console.log("null");
           return callback(null, file);
@@ -18,12 +30,11 @@ module.exports = function(options) {
       }
 
       if (file.isBuffer()) {
+          totalFileSize += 1;
           var wwwDir = path.dirname(file.path);
           var baseName = path.basename(file.path);
           var url = 'http://localhost:{{port}}/';
-          //file.contents = new Buffer("11");
-          //callback(null, file);
-          SimpleServer.start(wwwDir, function (server) {
+          SimpleServer.start(wwwDir, server => {
               // Replace {{port}} with server.port
               url = url.replace('{{port}}', server.port) + baseName;
               var _ph, _page;
@@ -39,11 +50,15 @@ module.exports = function(options) {
               }).then(content => {
                   file.contents = new Buffer(content);
                   callback(null, file);
-                  console.log(gutil.colors.green(baseName + "load success"));
+                  console.log(gutil.colors.blue(baseName) + gutil.colors.green(" load success"));
+                  doFinish();
                   _page.close();
                   _ph.exit();
-              }).catch(e => console.log(e));
+              }).catch(e => {
+                  doFinish();
+                  console.log(e)
+              });
           });
       }
-  });
+    });
 };

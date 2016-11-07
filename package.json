@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "split file to multiple for gulp",
   "dependencies": {
-    "co": "^4.6.0",
+    "gulp-sequence": "^0.4.6",
     "gulp-util": "^3.0.1",
     "lodash": "^4.16.6",
     "map-stream": "0.0.6",

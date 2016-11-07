@@ -22,9 +22,10 @@ function startServer(wwwDir, callback) {
 }
 
 function closeServer(){
-  console.log("close http server");
-  _.each(_.values(fileServerList), function(item){
-    item.close();
+  //console.log("close http server");
+  _.each(_.keys(fileServerList), function(key){
+    fileServerList[key].close();
+    delete fileServerList[key];
   });
 }
 

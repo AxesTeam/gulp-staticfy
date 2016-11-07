@@ -35,9 +35,10 @@ module.exports = function(options) {
           var wwwDir = file.cwd;
           var baseName = path.relative(file.cwd, file.path);
           var url = 'http://localhost:{{port}}/';
+          var query_string = options.query_string ? `?${options.query_string}` : '';
           SimpleServer.start(wwwDir, server => {
               // Replace {{port}} with server.port
-              url = url.replace('{{port}}', server.port) + baseName;
+              url = url.replace('{{port}}', server.port) + baseName + query_string;
               var _ph, _page;
               phantom.create().then(ph => {
                   _ph = ph;
@@ -49,12 +50,12 @@ module.exports = function(options) {
                   //console.log(status);
                   return _page.property('content')
               }).then(content => {
-                  file.contents = new Buffer(content);
-                  callback(null, file);
                   console.log(gutil.colors.blue(baseName) + gutil.colors.green(" load success"));
                   doFinish();
                   _page.close();
                   _ph.exit();
+                  file.contents = new Buffer(content);
+                  callback(null, file);
               }).catch(e => {
                   doFinish();
                   console.log(e)

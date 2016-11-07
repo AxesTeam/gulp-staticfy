@@ -5,10 +5,10 @@
   "dependencies": {
     "co": "^4.6.0",
     "gulp-util": "^3.0.1",
+    "map-stream": "0.0.6",
     "node-static": "^0.7.9",
     "phantom": "^2.1.21",
-    "portfinder": "^1.0.9",
-    "through2": "0.6.3"
+    "portfinder": "^1.0.9"
   },
   "devDependencies": {
     "gulp": "^3.6.2",

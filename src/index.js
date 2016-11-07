@@ -1,15 +1,13 @@
 'use strict';
 
-var through = require('through2');
 var gutil = require('gulp-util');
 var path = require('path');
 var phantom = require("phantom");
-var co = require('co');
 var SimpleServer = require('./server.js');
+var map = require('map-stream');
 
-// 可以按照 gulp-cssmin 的方式来写
 module.exports = function(options) {
-  return through.obj(function(file, enc, callback) {
+  return map(function (file, callback) {
       if (file.isNull()) {
           console.log("null");
           return callback(null, file);
@@ -20,16 +18,14 @@ module.exports = function(options) {
       }
 
       if (file.isBuffer()) {
-          file.contents = new Buffer("111");
-          //var wwwDir = path.join(__dirname, '.');
-          var wwwDir = 'F:/airdroid_code/github/gulp-staticfy/example';
-          console.log("www:", wwwDir);
+          var wwwDir = path.dirname(file.path);
+          var baseName = path.basename(file.path);
           var url = 'http://localhost:{{port}}/';
+          //file.contents = new Buffer("11");
+          //callback(null, file);
           SimpleServer.start(wwwDir, function (server) {
-              console.log("port:", server.port);
               // Replace {{port}} with server.port
-              url = url.replace('{{port}}', server.port) + 'src/simple.html';
-              console.log("url:", url);
+              url = url.replace('{{port}}', server.port) + baseName;
               var _ph, _page;
               phantom.create().then(ph => {
                   _ph = ph;
@@ -41,10 +37,9 @@ module.exports = function(options) {
                   console.log(status);
                   return _page.property('content')
               }).then(content => {
-                  //console.log(content);
                   file.contents = new Buffer(content);
                   callback(null, file);
-                  console.log("end");
+                  console.log(gutil.colors.green(baseName + "load success"));
                   _page.close();
                   _ph.exit();
               }).catch(e => console.log(e));

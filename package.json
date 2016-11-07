@@ -1,6 +1,6 @@
 {
   "name": "gulp-staticfy",
-  "version": "0.0.4",
+  "version": "0.0.1",
   "description": "Staticfy your website for gulp",
   "dependencies": {
     "gulp-sequence": "^0.4.6",

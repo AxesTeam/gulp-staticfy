@@ -1,7 +1,7 @@
 {
-  "name": "gulp-file-split",
+  "name": "gulp-staticfy",
   "version": "0.0.4",
-  "description": "split file to multiple for gulp",
+  "description": "Staticfy your website for gulp",
   "dependencies": {
     "gulp-sequence": "^0.4.6",
     "gulp-util": "^3.0.1",
@@ -17,10 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kebingzao/gulp-file-split"
+    "url": "git@github.com:AxesTeam/gulp-staticfy.git"
   },
   "keywords": [
-    "split"
+    "gulp",
+    "staticfy",
+    "i18n"
   ],
   "author": {
     "name": "kbz",
@@ -31,7 +33,7 @@
     "node": ">=0.10"
   },
   "readmeFilename": "README.md",
-  "homepage": "https://github.com/kebingzao/gulp-file-split",
-  "_id": "gulp-file-split@0.0.1",
-  "_from": "gulp-file-split@0.0.1"
+  "homepage": "https://github.com/AxesTeam/gulp-staticfy",
+  "_id": "gulp-staticfy@0.0.1",
+  "_from": "gulp-staticfy@0.0.1"
 }

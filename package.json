@@ -1,7 +1,8 @@
 {
   "name": "gulp-staticfy",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Staticfy your website for gulp",
+  "main": "src/index.js",
   "dependencies": {
     "gulp-sequence": "^0.4.6",
     "gulp-util": "^3.0.1",

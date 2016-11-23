@@ -1,6 +1,6 @@
 {
   "name": "gulp-staticfy",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Staticfy your website for gulp",
   "main": "src/index.js",
   "dependencies": {
@@ -9,7 +9,7 @@
     "lodash": "^4.16.6",
     "map-stream": "0.0.6",
     "node-static": "^0.7.9",
-    "phantom": "^2.1.21",
+    "phantom": "git+ssh://git@github.com/kebingzao/phantomjs-node.git",
     "portfinder": "^1.0.9"
   },
   "devDependencies": {

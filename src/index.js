@@ -17,6 +17,8 @@ module.exports = function(options) {
             return phantom.create().then(_ph => {
                 ph = _ph;
                 return ph.createPage();
+            }).catch(e => {
+                console.log(gutil.colors.red(e));
             })
         }
     };
